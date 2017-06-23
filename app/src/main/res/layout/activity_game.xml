@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fr.fbouton.sudoku.GameActivity"
+    android:orientation="vertical">
+
+    <Chronometer
+        android:id="@+id/timer_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/gameBoard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:columnCount="9"
+        app:rowCount="9"
+        app:layout_gravity="fill"
+        android:layout_weight="9">
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+        <Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/><Button android:minWidth="0dp" app:layout_columnWeight="1"/>
+
+
+
+    </android.support.v7.widget.GridLayout>
+
+    <fr.fbouton.sudoku.layout.utils.ToggleGroup
+        android:id="@+id/toggleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/btn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_1"
+            android:textOff="@string/btn_1"
+            android:textOn ="@string/btn_1" />
+
+        <ToggleButton
+            android:id="@+id/btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_2"
+            android:textOff="@string/btn_2"
+            android:textOn ="@string/btn_2" />
+
+        <ToggleButton
+            android:id="@+id/btn_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_3"
+            android:textOff="@string/btn_3"
+            android:textOn ="@string/btn_3"/>
+
+        <ToggleButton
+            android:id="@+id/btn_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_4"
+            android:textOff="@string/btn_4"
+            android:textOn ="@string/btn_4" />
+
+        <ToggleButton
+            android:id="@+id/btn_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_5"
+            android:textOff="@string/btn_5"
+            android:textOn ="@string/btn_5" />
+
+        <ToggleButton
+            android:id="@+id/btn_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_6"
+            android:textOff="@string/btn_6"
+            android:textOn ="@string/btn_6" />
+
+        <ToggleButton
+            android:id="@+id/btn_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_7"
+            android:textOff="@string/btn_7"
+            android:textOn ="@string/btn_7" />
+
+        <ToggleButton
+            android:id="@+id/btn_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_8"
+            android:textOff="@string/btn_8"
+            android:textOn ="@string/btn_8" />
+
+        <ToggleButton
+            android:id="@+id/btn_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_9"
+            android:textOff="@string/btn_9"
+            android:textOn ="@string/btn_9" />
+    </fr.fbouton.sudoku.layout.utils.ToggleGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btnResult"
+            android:onClick="solve"/>
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btnReset"
+            android:onClick="reset"/>
+    </LinearLayout>
+
+
+</LinearLayout>
