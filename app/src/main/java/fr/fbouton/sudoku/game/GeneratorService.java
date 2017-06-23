@@ -3,23 +3,20 @@ package fr.fbouton.sudoku.game;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.mariuszgromada.math.janetsudoku.SudokuGenerator;
 import org.mariuszgromada.math.janetsudoku.SudokuSolver;
-import org.mariuszgromada.math.janetsudoku.SudokuStore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import fr.fbouton.sudoku.services.PuzzleReceiver;
 
 public class GeneratorService extends Service{
 
     public static final String GENERATE_PUZZLE = "fr.fbouton.sudoku.game";
+    public static final String PUZZLE_GENERATED = "generated";
+    public static final String PUZZLE_SOLVED = "solved";
 
     private SudokuGenerator generator = new SudokuGenerator(SudokuGenerator.PARAM_GEN_RND_BOARD);
     private SudokuSolver solver = new SudokuSolver();
@@ -40,9 +37,9 @@ public class GeneratorService extends Service{
         if(solver.solve() == 3){
             solved = solver.getSolvedBoard();
         }
-        Intent sendPuzzle = new Intent(GENERATE_PUZZLE, PuzzleReceiver.class);
-        sendPuzzle.putExtra("generated", generate);
-        sendPuzzle.putExtra("solved", solved);
+        Intent sendPuzzle = new Intent(GENERATE_PUZZLE);
+        sendPuzzle.putExtra(PUZZLE_GENERATED, generate);
+        sendPuzzle.putExtra(PUZZLE_SOLVED, solved);
         sendBroadcast(sendPuzzle);
     }
 }

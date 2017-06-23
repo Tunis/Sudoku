@@ -6,12 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
+import org.mariuszgromada.math.janetsudoku.SudokuStore;
+
 import fr.fbouton.sudoku.game.GeneratorService;
 import fr.fbouton.sudoku.layout.utils.ToggleGroup;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener, ToggleGroup.OnCheckedChangeListener {
 
     private int[][] userBoard;
+    private int[][] originalBoard;
+    private int[][] solvedBoard;
     private android.support.v7.widget.GridLayout board;
     private ToggleGroup toggleGroup;
     private int valueChoosed = -1;
@@ -23,7 +27,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
 
         generatorService = new GeneratorService();
-        userBoard =
+
 
         board = (android.support.v7.widget.GridLayout) findViewById(R.id.gameBoard);
         toggleGroup = (ToggleGroup) findViewById(R.id.toggleGroup);
@@ -38,7 +42,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             Button btn = (Button) board.getChildAt(i);
             btn.setOnClickListener(this);
-            int value = userBoard[i/9][i%9];
+            int value = originalBoard[i/9][i%9];
 
             switch (value){
                 case 1: btn.setText(getString(R.string.btn_1)); btn.setEnabled(false); break;
@@ -103,11 +107,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reset(View view) {
-        generatorService.
         showBoard();
     }
 
     public void solve(View view) {
-
+        SudokuStore.boardsAreEqual(userBoard, solvedBoard);
     }
 }
