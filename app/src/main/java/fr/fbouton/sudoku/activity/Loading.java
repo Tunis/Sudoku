@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +20,6 @@ public class Loading extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.w("TEST", "chargement loading activity");
         setContentView(R.layout.activity_loading);
         new doThing().execute();
     }
@@ -37,7 +35,6 @@ public class Loading extends Activity {
 //            r.commitTransaction();
 
             long count = r.where(Sudoku.class).count();
-            Log.w("TEST", "il y a " + count + " items en bdd");
 
             if(count == 0){
                 InputStream in = Loading.this.getResources().openRawResource(R.raw.sudoku_list);
