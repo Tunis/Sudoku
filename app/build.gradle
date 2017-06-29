@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -35,4 +36,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/Janet-Sudoku-CURRENT.jar')
     compile 'com.android.support:gridlayout-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'io.realm:android-adapters:2.0.0'
 }

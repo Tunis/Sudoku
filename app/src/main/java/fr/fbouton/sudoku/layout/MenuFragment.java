@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import fr.fbouton.sudoku.R;
+import fr.fbouton.sudoku.models.Sudoku;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +47,15 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        View v = inflater.inflate(R.layout.fragment_menu, container, false);
+        View btnResume = v.findViewById(R.id.btn_resumeGame);
+        btnResume.setEnabled(false);
+        Realm r = Realm.getDefaultInstance();
+        long doing = r.where(Sudoku.class).equalTo("doing", true).count();
+        if(doing > 0){
+            btnResume.setEnabled(true);
+        }
+        return v;
     }
 
 }

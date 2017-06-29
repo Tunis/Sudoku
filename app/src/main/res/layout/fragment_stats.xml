@@ -6,10 +6,59 @@
     android:orientation="vertical"
     tools:context=".layout.StatsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/numberOfSudokuField"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/numberOfStartingSudokuField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/numberOfFinishedSudokuField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/nbEssaiGlobalField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/nbEssaiMoyField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/timeToClearGlobalField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/timeToClearMoyField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="10dp" />
 
 </LinearLayout>
