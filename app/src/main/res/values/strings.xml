@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Sudoku</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_menu">Menu</string>
     <string name="title_Stats">Statistiques</string>
-    <string name="title_Exit">Quittez</string>
     <string name="btn_newGame">nouvelle partie</string>
     <string name="btn_resumeGame">reprendre la partie</string>
     <string name="btn_9">9</string>
@@ -17,21 +14,22 @@
     <string name="btn_2">2</string>
     <string name="btn_1">1</string>
     <string name="varTimer">%1$02d:%2$02d:%3$02d</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btnReset">Reset</string>
     <string name="btnResult">Check</string>
     <string name="Loading">Chargement…</string>
     <string name="timeToClear">Temps passé :</string>
-    <string name="nbEssai">Nombre D\'essais :</string>
+    <string name="nbEssai">Nombres D\'essais :</string>
     <string name="btnBack">Revenir au menu</string>
-    <string name="numberOfSudoku">Nombres de Sudoku : %1d</string>
+    <string name="numberOfSudoku">Nombres de Sudokus : %1d</string>
     <string name="varInt">%1$d</string>
-    <string name="numberOfStartingSudoku">Nombre de Sudoku commencer :\n %1d</string>
-    <string name="numberOfFinishedSudoku">Nombres de Sudoku finis :\n %1d</string>
-    <string name="timeToClearGlobal">temps total passer :\n %1$d an, %2$d jours, %3$02dh, %4$02dm, %5$02ds</string>
-    <string name="timeToClearMoy">Temps moyen passer par sudolu :\n %1$d jours, %2$02dh, %3$02dm, %4$02ds</string>
+    <string name="numberOfStartingSudoku">Nombres de Sudokus commencer :\n %1d</string>
+    <string name="numberOfFinishedSudoku">Nombres de Sudokus finis :\n %1d</string>
+    <string name="timeToClearGlobal">temps total passé :\n %1$d an, %2$d jours, %3$02dh, %4$02dm, %5$02ds</string>
+    <string name="timeToClearMoy">Temps moyen passé par sudoku :\n %1$d jours, %2$02dh, %3$02dm, %4$02ds</string>
     <string name="nbEssaiGlobal">Nombres d\'essais totaux :\n %1d</string>
     <string name="nbEssaiMoy">Nombres d\'essais moyen par sudoku :\n %1d</string>
+    <string name="doReset">oui</string>
+    <string name="dontReset">non</string>
+    <string name="dialogReset">Voulez-vous vraiment remettre à zéro le sudoku?</string>
+    <string name="date" />
 </resources>

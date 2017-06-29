@@ -1,12 +1,16 @@
 package fr.fbouton.sudoku.models;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 @SuppressWarnings("unused")
+/**
+ * model for the save of in doing sudoku
+ */
 public class UserInput extends RealmObject implements Serializable{
     private Sudoku board;
     @PrimaryKey
@@ -14,6 +18,7 @@ public class UserInput extends RealmObject implements Serializable{
     private String userBoard;
     private int numberEssais = 1;
     private long timer = 0;
+    private long lastPlayed;
 
 
     public UserInput() {}
@@ -81,5 +86,15 @@ public class UserInput extends RealmObject implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Calendar getLastPlayed() {
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(lastPlayed);
+        return date;
+    }
+
+    public void setLastPlayed(Calendar lastPlayed) {
+        this.lastPlayed = lastPlayed.getTimeInMillis();
     }
 }

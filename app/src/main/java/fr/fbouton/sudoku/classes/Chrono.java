@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Chronometer;
 
-
+/**
+ * simple extend of Chronometer to expose the boolean isRunning to know if the timer is stop or not.
+ */
 public class Chrono extends Chronometer {
 
         private boolean isRunning = false;

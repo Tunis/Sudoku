@@ -12,6 +12,16 @@
     android:paddingStart="0dp"
     android:paddingTop="0dp">
 
+
+        <TextView
+            android:id="@+id/lastDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:gravity="center"
+            android:minHeight="20dp"
+            android:minWidth="0dp" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="20dp"

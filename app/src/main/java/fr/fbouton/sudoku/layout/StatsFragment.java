@@ -103,24 +103,56 @@ public class StatsFragment extends Fragment {
         super.onDetach();
     }
 
+    /**
+     *
+     *  simple method to calculate the number of year in the timer.
+     *
+     * @param timer the timer that you want the number of year from
+     * @return the number of year in the timer
+     */
     public int getYears(long timer){
         return (int)(timer / ((((1000L*60L)*60L)*24L)*365L));
     }
-
+    /**
+     *
+     *  simple method to calculate the number of days in the timer.
+     *
+     * @param timer the timer that you want the number of days from
+     * @param withYears boolean to say if you have the years calculate too or not
+     * @return the number of days in the timer
+     */
     public int getDays(long timer, boolean withYears){
         if(withYears)
             return (int)((timer / (1000*60*60*24)) % 365);
         return (int)((timer / (1000*60*60*24)));
     }
-
+    /**
+     *
+     *  simple method to calculate the number of hours in the timer.
+     *
+     * @param timer the timer that you want the number of hours from
+     * @return the number of hours in the timer
+     */
     public int getHeures(long timer) {
         return (int) ((timer / (1000*60*60)) % 24);
     }
-
+    /**
+     *
+     *  simple method to calculate the number of minutes in the timer.
+     *
+     * @param timer the timer that you want the number of minutes from
+     * @return the number of minutes in the timer
+     */
     public int getMinutes(long timer) {
         return (int) ((timer / (1000*60)) % 60);
     }
-
+    /**
+     *
+     *  simple method to calculate the number of secondes in the timer.
+     *
+     * @param timer the timer that you want the number of secondes from
+     * @return the number of secondes in the timer
+     */
     public int getSecondes(long timer) {
         return (int) (timer / 1000) % 60 ;
     }

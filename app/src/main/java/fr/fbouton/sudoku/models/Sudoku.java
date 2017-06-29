@@ -6,6 +6,11 @@ import java.util.UUID;
 import io.realm.RealmObject;
 
 @SuppressWarnings("unused")
+/**
+ * Models for the sudoku,
+ * save the initial board, save board, the status of the sudoku
+ * the time and number of try for finished sudoku
+ */
 public class Sudoku extends RealmObject implements Serializable {
 
 

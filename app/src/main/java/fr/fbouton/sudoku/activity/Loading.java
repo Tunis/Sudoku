@@ -14,7 +14,9 @@ import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.models.Sudoku;
 import io.realm.Realm;
 
-
+/**
+ * simple activity to load data in bdd when starting the app for the first time. will go to menu automatically.
+ */
 public class Loading extends Activity {
 
     @Override

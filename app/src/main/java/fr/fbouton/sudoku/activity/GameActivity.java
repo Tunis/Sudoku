@@ -3,6 +3,7 @@ package fr.fbouton.sudoku.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TableLayout;
@@ -10,11 +11,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
 import java.util.Random;
 
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.classes.Chrono;
 import fr.fbouton.sudoku.layout.utils.ToggleGroup;
+import fr.fbouton.sudoku.metier.ConfirmDialog;
 import fr.fbouton.sudoku.models.Sudoku;
 import fr.fbouton.sudoku.models.UserInput;
 import io.realm.Realm;
@@ -22,7 +25,10 @@ import io.realm.RealmResults;
 
 import static fr.fbouton.sudoku.activity.RetryActivity.TAG_LOAD_GAME;
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener, ToggleGroup.OnCheckedChangeListener {
+/**
+ * game activity, will show the board and react to user input.
+ */
+public class GameActivity extends AppCompatActivity implements View.OnClickListener, ToggleGroup.OnCheckedChangeListener, ConfirmDialog.NoticeDialogListener{
 
     private Sudoku sudoku;
     private UserInput user;
@@ -59,6 +65,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         showBoard(isResume);
     }
 
+    // load a random sudoku
     private void startGame() {
         RealmResults<Sudoku> result = r.where(Sudoku.class)
                     .notEqualTo("done", true)
@@ -73,16 +80,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         r.beginTransaction();
         user = new UserInput(sudoku);
+        user.setLastPlayed(Calendar.getInstance());
         r.insertOrUpdate(user);
         r.commitTransaction();
     }
-
+    // load the selected sudoku
     private void loadGame() {
         String id = getIntent().getStringExtra(TAG_LOAD_GAME);
         user = r.where(UserInput.class).equalTo("id", id).findFirst();
         sudoku = r.where(Sudoku.class).equalTo("idBoard", user.getBoard().getIdBoard()).findFirst();
     }
 
+    /**
+     * show the initial board
+     * @param isResume to know if we need to load from the Sudoku or UserInput object.
+     */
     public void showBoard(boolean isResume) {
         for (int i = 0; i < 81; i++) {
 
@@ -108,7 +120,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 case '7': btn.setId(i); btn.setText(getString(R.string.btn_7)); btn.setEnabled(false); break;
                 case '8': btn.setId(i); btn.setText(getString(R.string.btn_8)); btn.setEnabled(false); break;
                 case '9': btn.setId(i); btn.setText(getString(R.string.btn_9)); btn.setEnabled(false); break;
-                default: btn.setId(i); btn.setText("");
+                default: btn.setId(i); btn.setText(""); btn.setEnabled(true);
             }
             if(isResume){
                 checkCase();
@@ -160,6 +172,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 default: text.setText(""); newBoard.setCharAt(id,'0');
             }
             user.setUserBoard(newBoard.toString());
+            user.setLastPlayed(Calendar.getInstance());
         r.insertOrUpdate(user);
         r.commitTransaction();
     }
@@ -179,13 +192,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void reset(View view) {
-        r.beginTransaction();
-            user.reset();
-        r.commitTransaction();
-        showBoard(false);
-    }
-
+    /**
+     * check if board is solve or not
+     * if solve save sudoku with update data and launch stats activity
+     * if not call checkCase()
+     */
     public void solve(View view) {
 
         saveChrono();
@@ -193,6 +204,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         r.beginTransaction();
             user.addTry();
+            user.setLastPlayed(Calendar.getInstance());
         r.commitTransaction();
         boolean b = user.getUserBoard().equals(sudoku.getSolvedBoard());
         if(!b) checkCase();
@@ -211,6 +223,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * check each case for good value and lock them
+     */
     private void checkCase() {
         String userBoard = user.getUserBoard();
         String solvedBoard = sudoku.getSolvedBoard();
@@ -229,6 +244,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * juste save the timer in userInput
+     */
     private void saveChrono(){
         r.beginTransaction();
             user.setTimer(SystemClock.elapsedRealtime() - chrono.getBase());
@@ -259,5 +277,35 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         r.commitTransaction();
         Intent toMenu = new Intent(this, MenuActivity.class);
         startActivity(toMenu);
+    }
+
+
+
+    public void showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        ConfirmDialog dialog = new ConfirmDialog();
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+
+    /**
+     * called by button reset
+     * @param view
+     */
+    public void reset(View view) {
+        showNoticeDialog();
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        r.beginTransaction();
+            user.reset();
+        r.commitTransaction();
+        showBoard(false);
+        checkCase();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
     }
 }

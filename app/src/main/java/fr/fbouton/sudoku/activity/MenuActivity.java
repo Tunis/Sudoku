@@ -14,6 +14,9 @@ import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.layout.MenuFragment;
 import fr.fbouton.sudoku.layout.StatsFragment;
 
+/**
+ * principal activity, will show menu or global stats with fragment.
+ */
 public class MenuActivity extends AppCompatActivity {
 
     private final String TAG_STATS = "STATS";
@@ -23,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     private MenuFragment menuFragment;
     private StatsFragment statsFragment;
 
-
+// switch showing fragment
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -56,6 +59,7 @@ public class MenuActivity extends AppCompatActivity {
 
         statsFragment = StatsFragment.newInstance();
 
+        // default load menuFragment
         FragmentTransaction transaction = fManager.beginTransaction();
         transaction.replace(R.id.content, menuFragment);
         transaction.commit();
@@ -79,6 +83,7 @@ public class MenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         StatsFragment stats = (StatsFragment)getFragmentManager().findFragmentByTag(TAG_STATS);
         if (stats != null && stats.isVisible()) {
+            // to make the bottomNavigationBar to change :
             View view = navigation.findViewById(R.id.navigation_home);
             view.performClick();
         }else{

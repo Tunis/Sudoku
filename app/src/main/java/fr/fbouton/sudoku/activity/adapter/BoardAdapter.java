@@ -2,40 +2,43 @@ package fr.fbouton.sudoku.activity.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 import fr.fbouton.sudoku.R;
-import fr.fbouton.sudoku.activity.RetryActivity;
-import fr.fbouton.sudoku.models.Sudoku;
 import fr.fbouton.sudoku.models.UserInput;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+/**
+ * simple adapter for the recyclerView listing the already started sudoku.
+ */
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
 
-    RealmResults<UserInput> data;
+    private final Realm r;
+    private RealmResults<UserInput> data;
     public interface OnItemClickListener {
         void onItemClick(UserInput item);
     }
     private final OnItemClickListener listener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TableLayout layout;
 
-        public ViewHolder(TableLayout v) {
+        ViewHolder(TableLayout v) {
             super(v);
             layout = v;
         }
 
-        public void bind(final UserInput item, final OnItemClickListener listener) {
+        void bind(final UserInput item, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
@@ -54,12 +57,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
                 .inflate(R.layout.cell_grid_retry_list, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
-    public BoardAdapter(OnItemClickListener listener) {
+    public BoardAdapter(OnItemClickListener listener, Realm r) {
         this.listener = listener;
+        this.r = r;
     }
 
     @Override
@@ -71,6 +74,11 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         data = listStart;
     }
 
+    /**
+     * method where we load the data and show it.
+     * @param holder the cell view.
+     * @param position the position of the data in the list.
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -79,9 +87,13 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         Realm r = Realm.getDefaultInstance();
         r.beginTransaction();
         if(userInput.getUserBoard() != null) {
+            TextView date = (TextView) holder.layout.getChildAt(0);
+            Calendar lastPlayed = userInput.getLastPlayed();
+            CharSequence dateValue = String.format(Locale.getDefault(), "%1$tA %1$td %1$tb %1$tY", lastPlayed);
+            date.setText(dateValue);
             char[] chars = userInput.getUserBoard().toCharArray();
             for (int i = 0; i < 81; i++) {
-                TableRow row = (TableRow) holder.layout.getChildAt(i / 9);
+                TableRow row = (TableRow) holder.layout.getChildAt((i / 9)+1);
                 TextView text = (TextView) row.getChildAt(i % 9);
                 char value = chars[i];
                 switch (value) {
@@ -119,6 +131,24 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         }
         r.commitTransaction();
         holder.bind(data.get(position), listener);
+    }
+
+    /**
+     * remove the item in the list at the position.
+     * @param position the position of the data in the list.
+     */
+    public void removeItem(int position) {
+        final UserInput userInput = data.get(position);
+        r.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgRealm) {
+                userInput.getBoard().setDoing(false);
+                userInput.deleteFromRealm();
+            }
+        });
+
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, data.size());
     }
 
 }

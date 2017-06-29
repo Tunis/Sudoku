@@ -21,9 +21,4 @@ public class ApplicationConfiguration extends Application {
         //Realm.deleteRealm(config);
         Realm.setDefaultConfiguration(config);
     }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-    }
 }
