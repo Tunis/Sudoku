@@ -42,7 +42,8 @@ public class ConfirmDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Build the dialog and set up the button click handlers
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.dialogReset)
+        int text = getArguments().getInt("TEXT");
+        builder.setMessage(text)
                 .setPositiveButton(R.string.doReset, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Send the positive button event back to the host activity
@@ -57,4 +58,5 @@ public class ConfirmDialog extends DialogFragment {
                 });
         return builder.create();
     }
+
 }

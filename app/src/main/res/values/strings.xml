@@ -32,4 +32,5 @@
     <string name="dontReset">non</string>
     <string name="dialogReset">Voulez-vous vraiment remettre à zéro le sudoku?</string>
     <string name="date" />
+    <string name="deleteUserInput">Voulez-vous vraiment supprimer ce sudoku?</string>
 </resources>

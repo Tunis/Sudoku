@@ -284,6 +284,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void showNoticeDialog() {
         // Create an instance of the dialog fragment and show it
         ConfirmDialog dialog = new ConfirmDialog();
+        Bundle args = new Bundle();
+        args.putInt("TEXT", R.string.dialogReset);
+        dialog.setArguments(args);
         dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
     }
 
