@@ -1,8 +1,6 @@
 package fr.fbouton.sudoku.layout;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.models.Sudoku;
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,8 +31,7 @@ public class MenuFragment extends Fragment {
      * @return A new instance of fragment MenuFragment.
      */
     public static MenuFragment newInstance() {
-        MenuFragment fragment = new MenuFragment();
-        return fragment;
+        return new MenuFragment();
     }
 
     @Override

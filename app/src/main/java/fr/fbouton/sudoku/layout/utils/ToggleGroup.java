@@ -3,7 +3,6 @@ package fr.fbouton.sudoku.layout.utils;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -35,6 +34,7 @@ import android.widget.ToggleButton;
  * @see RadioButton
  *
  */
+@SuppressWarnings("unused")
 public class ToggleGroup extends LinearLayout {
     // holds the checked id; the selection is empty by default
     private int mCheckedId = -1;
@@ -218,18 +218,18 @@ public class ToggleGroup extends LinearLayout {
      * for a list of all child view attributes that this class supports.</p>
      *
      */
-    public static class LayoutParams extends LinearLayout.LayoutParams {
+    private static class LayoutParams extends LinearLayout.LayoutParams {
         /**
          * {@inheritDoc}
          */
-        public LayoutParams(Context c, AttributeSet attrs) {
+        LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
         }
 
         /**
          * {@inheritDoc}
          */
-        public LayoutParams(int w, int h) {
+        LayoutParams(int w, int h) {
             super(w, h);
         }
 
@@ -294,7 +294,7 @@ public class ToggleGroup extends LinearLayout {
          * @param group the group in which the checked radio button has changed
          * @param checkedId the unique identifier of the newly checked radio button
          */
-        public void onCheckedChanged(ToggleGroup group, int checkedId);
+        void onCheckedChanged(ToggleGroup group, int checkedId);
     }
 
     private class CheckedStateTracker implements CompoundButton.OnCheckedChangeListener {

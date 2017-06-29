@@ -1,8 +1,6 @@
 package fr.fbouton.sudoku.layout;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,15 +23,6 @@ import io.realm.RealmResults;
  */
 public class StatsFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
-    private TextView timeClearMoy;
-    private TextView nbEssai;
-    private TextView nbEssaiMoy;
-    private TextView nbSudoku;
-    private TextView nbStartSudoku;
-    private TextView nbFinishSudoku;
-    private TextView timeClear;
-
     public StatsFragment() {
         // Required empty public constructor
     }
@@ -44,7 +33,6 @@ public class StatsFragment extends Fragment {
      *
      * @return A new instance of fragment StatsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static StatsFragment newInstance() {
         return new StatsFragment();
     }
@@ -60,17 +48,17 @@ public class StatsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
 
-        nbEssai = (TextView) view.findViewById(R.id.nbEssaiGlobalField);
-        nbEssaiMoy = (TextView) view.findViewById(R.id.nbEssaiMoyField);
+        TextView nbEssai = (TextView) view.findViewById(R.id.nbEssaiGlobalField);
+        TextView nbEssaiMoy = (TextView) view.findViewById(R.id.nbEssaiMoyField);
 
-        nbSudoku = (TextView) view.findViewById(R.id.numberOfSudokuField);
+        TextView nbSudoku = (TextView) view.findViewById(R.id.numberOfSudokuField);
 
-        nbStartSudoku = (TextView) view.findViewById(R.id.numberOfStartingSudokuField);
+        TextView nbStartSudoku = (TextView) view.findViewById(R.id.numberOfStartingSudokuField);
 
-        nbFinishSudoku = (TextView) view.findViewById(R.id.numberOfFinishedSudokuField);
+        TextView nbFinishSudoku = (TextView) view.findViewById(R.id.numberOfFinishedSudokuField);
 
-        timeClear = (TextView) view.findViewById(R.id.timeToClearGlobalField);
-        timeClearMoy = (TextView) view.findViewById(R.id.timeToClearMoyField);
+        TextView timeClear = (TextView) view.findViewById(R.id.timeToClearGlobalField);
+        TextView timeClearMoy = (TextView) view.findViewById(R.id.timeToClearMoyField);
 
         Realm r = Realm.getDefaultInstance();
         long nbsSudoku = r.where(Sudoku.class).count();
@@ -111,20 +99,8 @@ public class StatsFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     public int getYears(long timer){
@@ -147,20 +123,5 @@ public class StatsFragment extends Fragment {
 
     public int getSecondes(long timer) {
         return (int) (timer / 1000) % 60 ;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

@@ -1,24 +1,22 @@
 package fr.fbouton.sudoku.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-
 import java.util.Random;
 
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.classes.Chrono;
+import fr.fbouton.sudoku.layout.utils.ToggleGroup;
 import fr.fbouton.sudoku.models.Sudoku;
 import fr.fbouton.sudoku.models.UserInput;
-import fr.fbouton.sudoku.layout.utils.ToggleGroup;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -28,7 +26,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private Sudoku sudoku;
     private UserInput user;
-    private ToggleGroup toggleGroup;
     private int valueChoosed = -1;
     private TableLayout board;
 
@@ -42,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         board = (TableLayout) findViewById(R.id.gameBoard);
         chrono = (Chrono) findViewById(R.id.timer_game);
 
-        toggleGroup = (ToggleGroup) findViewById(R.id.toggleGroup);
+        ToggleGroup toggleGroup = (ToggleGroup) findViewById(R.id.toggleGroup);
         toggleGroup.setOnCheckedChangeListener(this);
 
         r = Realm.getDefaultInstance();

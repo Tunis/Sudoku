@@ -8,20 +8,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.layout.MenuFragment;
 import fr.fbouton.sudoku.layout.StatsFragment;
-import fr.fbouton.sudoku.models.UserInput;
-import io.realm.Realm;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final String TAG_MENU = "MENU";
     private final String TAG_STATS = "STATS";
     private BottomNavigationView navigation;
 
@@ -38,6 +33,7 @@ public class MenuActivity extends AppCompatActivity {
             FragmentTransaction transaction = fManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    String TAG_MENU = "MENU";
                     transaction.replace(R.id.content, menuFragment, TAG_MENU);
                     transaction.commit();
                     return true;

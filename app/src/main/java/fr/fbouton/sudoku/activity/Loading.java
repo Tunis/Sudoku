@@ -18,21 +18,19 @@ import io.realm.Realm;
 
 public class Loading extends Activity {
 
-    private Realm r;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.w("TEST", "chargement loading activity");
         setContentView(R.layout.activity_loading);
-        AsyncTask<String, String, String> execute = new doThing().execute();
+        new doThing().execute();
     }
 
     private class doThing extends AsyncTask<String, String, String>{
 
         @Override
         protected String doInBackground(String... params) {
-            r = Realm.getDefaultInstance();
+            Realm r = Realm.getDefaultInstance();
 
 //            r.beginTransaction();
 //            r.deleteAll();

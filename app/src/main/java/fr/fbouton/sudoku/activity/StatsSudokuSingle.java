@@ -10,22 +10,18 @@ import android.widget.TextView;
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.models.UserInput;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 
 public class StatsSudokuSingle extends Activity {
 
-
-    private TextView timeClear;
-    private TextView nbEssai;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats_sudoku);
 
-        nbEssai = (TextView) findViewById(R.id.nbEssaiField);
-        timeClear = (TextView) findViewById(R.id.timeToClearField);
+        TextView nbEssai = (TextView) findViewById(R.id.nbEssaiField);
+        TextView timeClear = (TextView) findViewById(R.id.timeToClearField);
 
         String pk = (String) getIntent().getSerializableExtra("user");
         Realm r = Realm.getDefaultInstance();

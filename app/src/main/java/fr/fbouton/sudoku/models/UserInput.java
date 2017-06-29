@@ -4,17 +4,14 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
+@SuppressWarnings("unused")
 public class UserInput extends RealmObject implements Serializable{
     private Sudoku board;
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
     private String userBoard;
-    @Index
-    private boolean done = false;
     private int numberEssais = 1;
     private long timer = 0;
 
@@ -40,14 +37,6 @@ public class UserInput extends RealmObject implements Serializable{
 
     public void setUserBoard(String userBoard) {
         this.userBoard = userBoard;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
     }
 
     public int getNumberEssais() {

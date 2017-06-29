@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import io.realm.RealmObject;
 
+@SuppressWarnings("unused")
 public class Sudoku extends RealmObject implements Serializable {
 
 
