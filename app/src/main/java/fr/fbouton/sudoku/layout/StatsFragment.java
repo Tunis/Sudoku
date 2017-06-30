@@ -95,6 +95,7 @@ public class StatsFragment extends Fragment {
         timeClear.setText(getString(R.string.timeToClearGlobal, getYears(time), getDays(time, true), getHeures(time), getMinutes(time), getSecondes(time)));
         timeClearMoy.setText(getString(R.string.timeToClearMoy, getDays(timeMoy, false), getHeures(timeMoy), getMinutes(timeMoy), getSecondes(timeMoy)));
 
+        r.close();
         return view;
     }
 

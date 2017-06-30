@@ -22,12 +22,15 @@ import io.realm.RealmResults;
  */
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
 
-    private final Realm r;
     private RealmResults<UserInput> data;
     public interface OnItemClickListener {
         void onItemClick(UserInput item);
     }
     private final OnItemClickListener listener;
+    public interface OnDeleteItemListener {
+        void onDeleteItem(UserInput userInput);
+    }
+    OnDeleteItemListener mListener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -60,9 +63,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         return new ViewHolder(v);
     }
 
-    public BoardAdapter(OnItemClickListener listener, Realm r) {
+    public BoardAdapter(OnItemClickListener listener, OnDeleteItemListener deleteItemListener) {
         this.listener = listener;
-        this.r = r;
+        this.mListener = deleteItemListener;
     }
 
     @Override
@@ -130,6 +133,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
             }
         }
         r.commitTransaction();
+        r.close();
         holder.bind(data.get(position), listener);
     }
 
@@ -139,14 +143,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
      */
     public void removeItem(int position) {
         final UserInput userInput = data.get(position);
-        r.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm bgRealm) {
-                userInput.getBoard().setDoing(false);
-                userInput.deleteFromRealm();
-            }
-        });
-
+        mListener.onDeleteItem(userInput);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, data.size());
     }

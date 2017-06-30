@@ -1,64 +1,76 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_stat_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".layout.StatsFragment">
-
-    <TextView
-        android:id="@+id/numberOfSudokuField"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/fragment_stat_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        android:orientation="vertical"
+        tools:context=".layout.StatsFragment">
 
-    <TextView
-        android:id="@+id/numberOfStartingSudokuField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/numberOfSudokuField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/numberOfFinishedSudokuField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/numberOfStartingSudokuField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/nbEssaiGlobalField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/numberOfFinishedSudokuField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/nbEssaiMoyField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/nbEssaiGlobalField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/timeToClearGlobalField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/nbEssaiMoyField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/timeToClearMoyField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:maxLines="2"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/timeToClearGlobalField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/timeToClearMoyField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/btn_reset_bdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="reset"
+            android:text="@string/btnReset" />
+
+    </LinearLayout>
+</ScrollView>

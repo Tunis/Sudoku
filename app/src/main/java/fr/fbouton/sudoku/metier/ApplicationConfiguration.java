@@ -17,8 +17,6 @@ public class ApplicationConfiguration extends Application {
                 .name("SudokuBdd")
                 .schemaVersion(1)
                 .build();
-        // to remove realm completely :
-        //Realm.deleteRealm(config);
         Realm.setDefaultConfiguration(config);
     }
 }

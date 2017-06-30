@@ -36,6 +36,7 @@ public class StatsSudokuSingle extends Activity {
         r.beginTransaction();
             user.deleteFromRealm();
         r.commitTransaction();
+        r.close();
     }
 
     /**

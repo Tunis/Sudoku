@@ -51,6 +51,7 @@ public class MenuFragment extends Fragment {
         if(doing > 0){
             btnResume.setEnabled(true);
         }
+        r.close();
         return v;
     }
 

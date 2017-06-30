@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +14,12 @@ import android.view.View;
 import fr.fbouton.sudoku.R;
 import fr.fbouton.sudoku.layout.MenuFragment;
 import fr.fbouton.sudoku.layout.StatsFragment;
+import fr.fbouton.sudoku.metier.ConfirmDialog;
 
 /**
  * principal activity, will show menu or global stats with fragment.
  */
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements ConfirmDialog.NoticeDialogListener{
 
     private final String TAG_STATS = "STATS";
     private BottomNavigationView navigation;
@@ -89,5 +91,29 @@ public class MenuActivity extends AppCompatActivity {
         }else{
             this.finishAffinity();
         }
+    }
+
+    public void reset(View view) {
+        showNoticeDialog();
+    }
+    public void showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        ConfirmDialog dialog = new ConfirmDialog();
+        Bundle args = new Bundle();
+        args.putInt("TEXT", R.string.dialogResetBdd);
+        dialog.setArguments(args);
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Intent toLoading = new Intent(this, Loading.class);
+        toLoading.setAction("deleteBdd");
+        startActivity(toLoading);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
     }
 }

@@ -33,4 +33,5 @@
     <string name="dialogReset">Voulez-vous vraiment remettre à zéro le sudoku?</string>
     <string name="date" />
     <string name="deleteUserInput">Voulez-vous vraiment supprimer ce sudoku?</string>
+    <string name="dialogResetBdd">Cela va remettre à zéro tous les sudokus êtes vous certain de vouloir le faire?</string>
 </resources>

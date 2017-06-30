@@ -26,13 +26,14 @@ public class RetryActivity extends AppCompatActivity implements ConfirmDialog.No
     private BoardAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private int position;
+    private Realm r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retry_game);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerRetry);
-        Realm r = Realm.getDefaultInstance();
+        r = Realm.getDefaultInstance();
 
         // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -52,7 +53,20 @@ public class RetryActivity extends AppCompatActivity implements ConfirmDialog.No
                 load.setAction(TAG_LOAD_GAME);
                 startActivity(load);
             }
-        }, r);
+        }, new BoardAdapter.OnDeleteItemListener() {
+            @Override
+            public void onDeleteItem(final UserInput userInput) {
+                r.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        userInput.getBoard().setDoing(false);
+                        userInput.deleteFromRealm();
+                    }
+                });
+
+                mAdapter.notifyDataSetChanged();
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
 
         // get data from bdd and sorted them by date
@@ -116,5 +130,26 @@ public class RetryActivity extends AppCompatActivity implements ConfirmDialog.No
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!r.isClosed())
+            r.close();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        r = Realm.getDefaultInstance();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!r.isClosed())
+            r.close();
     }
 }
