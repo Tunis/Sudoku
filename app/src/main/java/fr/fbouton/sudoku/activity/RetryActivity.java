@@ -152,4 +152,10 @@ public class RetryActivity extends AppCompatActivity implements ConfirmDialog.No
         if(!r.isClosed())
             r.close();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        r = Realm.getDefaultInstance();
+    }
 }

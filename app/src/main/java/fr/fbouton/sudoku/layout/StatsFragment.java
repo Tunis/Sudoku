@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import fr.fbouton.sudoku.R;
@@ -60,6 +61,8 @@ public class StatsFragment extends Fragment {
         TextView timeClear = (TextView) view.findViewById(R.id.timeToClearGlobalField);
         TextView timeClearMoy = (TextView) view.findViewById(R.id.timeToClearMoyField);
 
+        Button btnReset = (Button) view.findViewById(R.id.btn_reset_bdd);
+
         Realm r = Realm.getDefaultInstance();
         long nbsSudoku = r.where(Sudoku.class).count();
         RealmResults<Sudoku> listdone = r.where(Sudoku.class).equalTo("done", true).findAll();
@@ -67,7 +70,9 @@ public class StatsFragment extends Fragment {
         long done = listdone.size();
         RealmResults<UserInput> listStats = r.where(UserInput.class).findAll();
 
-
+        if(doing == 0 && done == 0){
+            btnReset.setEnabled(false);
+        }
         long numberEssais = 0;
         long essayMoy = 0;
         long time = 0;

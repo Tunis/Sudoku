@@ -326,4 +326,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(!r.isClosed())
             r.close();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        r = Realm.getDefaultInstance();
+    }
 }
